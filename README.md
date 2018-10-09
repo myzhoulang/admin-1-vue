@@ -1,5 +1,7 @@
 # admin-vue
 
+## 预览地址[https://myzhoulang.github.io/admin-1-vue/](https://myzhoulang.github.io/admin-1-vue/)
+
 > A Vue.js project
 
 ## Build Setup
