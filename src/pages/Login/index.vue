@@ -117,7 +117,6 @@ export default class Login extends Vue {
     };
     this.form.validateFields(file[this.activeTab], (err, values) => {
       if (!err) {
-        console.log('登录信息: ', values);
         this.$router.push('/');
       }
     });

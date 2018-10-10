@@ -70,18 +70,24 @@
           <HotSearch/>
 
           <div style="padding: 5px 0;">
-            <a-table size="small" :columns="columns" :dataSource="hotSearchData">
+            <a-table size="small" rowKey="id" :columns="columns" :dataSource="hotSearchData">
               <span slot="trend" slot-scope="text, record">
                 {{text}}
-                <a-icon :style="{fontSize: '10px', color:record.trend === 'up'?'red':'green'}"
-                        :type="`caret-${record.trend}`" />
+                <a-icon
+                  class="trend-icon"
+                  :class="`trend-${record.trend}`"
+                  :type="`caret-${record.trend}`" />
+              </span>
+
+              <span slot="keyword" slot-scope="text, record">
+                <router-link to="/" class="text-primary">{{text}}</router-link>
               </span>
             </a-table>
           </div>
         </a-card>
       </a-col>
       <a-col :xl="12" :md="24" :sm="24" :xs="24" :lg="24">
-        <a-card :bordered="false" class="sales">
+        <a-card :bordered="false" class="sales" :style="{marginTop: '24px', minHeight: '509px'}">
           <template slot="title">
             <div class="title">销售额类别占比</div>
             <a-radio-group @change="onChanelChange" v-model="chanel">
@@ -113,11 +119,11 @@ for (let i = 0; i < 7; i += 1) {
 }
 
 const hotSearchData = [
-  { sortIndex: 1, keyword: '搜索关键词-0', users: 661, increase: '40%', trend: 'up' },
-  { sortIndex: 2, keyword: '搜索关键词-1', users: 661, increase: '40%', trend: 'down' },
-  { sortIndex: 3, keyword: '搜索关键词-2', users: 661, increase: '40%', trend: 'up' },
-  { sortIndex: 4, keyword: '搜索关键词-3', users: 661, increase: '40%', trend: 'up' },
-  { sortIndex: 5, keyword: '搜索关键词-4', users: 661, increase: '40%', trend: 'down' },
+  { id: 1, sortIndex: 1, keyword: '搜索关键词-0', users: 661, increase: '40%', trend: 'up' },
+  { id: 2, sortIndex: 2, keyword: '搜索关键词-1', users: 661, increase: '40%', trend: 'down' },
+  { id: 3, sortIndex: 3, keyword: '搜索关键词-2', users: 661, increase: '40%', trend: 'up' },
+  { id: 4, sortIndex: 4, keyword: '搜索关键词-3', users: 661, increase: '40%', trend: 'up' },
+  { id: 5, sortIndex: 5, keyword: '搜索关键词-4', users: 661, increase: '40%', trend: 'down' },
 ];
 
 @Component({
@@ -138,6 +144,7 @@ export default class Dashboard extends Vue {
     }, {
       title: '搜索关键词',
       dataIndex: 'keyword',
+      scopedSlots: { customRender: 'keyword' },
     }, {
       title: '用户数',
       sorter: true,
@@ -170,7 +177,7 @@ export default class Dashboard extends Vue {
       this.state = 'success';
     }, 1000);
   }
-
+  onChanelChange(){}
   onChange() {
     console.log(this);
   }

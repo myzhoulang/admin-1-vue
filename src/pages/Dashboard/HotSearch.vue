@@ -15,7 +15,7 @@
             <span class="total">12,321</span>
             <span class="sub-total">
               17.2
-              <a-icon class="icon" style="color: red;" type="caret-up" />
+              <a-icon class="trend-icon trend-up" style="color: red;" type="caret-up" />
             </span>
           </div>
           <div style="height: 45px;">
@@ -30,7 +30,7 @@
             <span class="total">12,321</span>
             <span class="sub-total">
               15.2
-              <a-icon class="icon" style="color: green;" type="caret-down" />
+              <a-icon class="trend-icon trend-down" type="caret-down" />
             </span>
           </div>
           <div style="height: 45px;">
@@ -51,7 +51,7 @@ import SmoothArea from '@/components/charts/SmoothArea';
     SmoothArea,
   },
 })
-export default class extends Vue {
+export default class HotSearch extends Vue {
   state = 'pedding';
 
   mounted() {
@@ -74,16 +74,10 @@ export default class extends Vue {
       line-height: 32px;
     }
 
-    .value{}
-
     .value > .sub-total{
       font-size: 16px;
       vertical-align: top;
       color: rgba(0,0,0,.45);
-    }
-
-    .icon{
-      font-size: 12px;
     }
   }
 </style>

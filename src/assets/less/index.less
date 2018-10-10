@@ -1,3 +1,5 @@
+@import "~ant-design-vue/lib/style/themes/default";
+
 ul,ol,li,dl,dd,dt{
   padding: 0;
   margin: 0;
@@ -21,9 +23,24 @@ li{
   margin-left: 8px;
 }
 
+// 文本样式
+.text-primary{
+  color: @primary-color;
+}
+.text-danger{
+  color: @error-color;
+}
 .text-right{
   text-align: right;
 }
 .text-center{
   text-align: center;
 }
+.text-sm{
+  font-size: 12px;
+}
+
+// 趋势样式
+.trend-up{ color: #f5222d; }
+.trend-down{ color: #52c41a; }
+.trend-icon{ font-size: 12px; transform: scale(.8);}

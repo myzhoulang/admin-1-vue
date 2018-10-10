@@ -1,12 +1,27 @@
 <template>
-  <div class="pie-chart">
-    <v-chart :padding="[0, 300, 0, 0]" :forceFit="true" :height="height" :data="data" :scale="scale">
-      <v-tooltip :showTitle="false" dataKey="item*percent" />
-      <v-axis position="left" />
-      <v-legend :useHtml="true" :itemGap="16" :item-formatter="itemFormatter" position="right-center" :offsetX="0" />
-      <v-pie position="percent" color="item" :vStyle="pieStyle" />
-      <v-coord type="theta" :radius="0.85" :innerRadius="0.7" />
-    </v-chart>
+  <div class="pie-chart" style="position: relative;">
+
+    <a-row  type="flex" align="middle">
+      <a-col :xs="24" :lg="13">
+        <div>
+          <v-chart :padding="padding" :forceFit="true" :height="height" :data="data" :scale="scale">
+            <v-tooltip :showTitle="false" dataKey="item*percent" />
+            <v-axis position="left" />
+            <v-pie position="percent" color="item" :vStyle="pieStyle" />
+            <v-coord type="theta" :radius="0.8" :innerRadius="0.7" />
+            <v-legend container="#legend-container" :itemFormatter="itemFormatter" useHtml="true"/>
+          </v-chart>
+        </div>
+
+        <div class="pie-total">
+          <h4 class="sub-title"><span>销售额</span></h4>
+          <p class="total"><span>¥15,781</span></p>
+        </div>
+      </a-col>
+      <a-col :xs="24" :lg="11">
+        <div id="legend-container"></div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -42,6 +57,7 @@ const data = dv.rows;
 @Component
 export default class Pie extends Vue {
   height = 320;
+  padding = [0, 0, 0, 0];
   data = data;
   scale = scale;
   pieStyle = {
@@ -49,9 +65,8 @@ export default class Pie extends Vue {
     lineWidth: 5,
   };
 
-
   itemFormatter = (value) => {
-    const item = sourceData.find(item => item.item === value);
+    const item = sourceData.find(item2 => item2.item === value);
     return (
       `<span class="legend-name">${item.item}</span>
      <span class="ant-divider ant-divider-vertical"></span>
@@ -62,25 +77,55 @@ export default class Pie extends Vue {
 }
 </script>
 
+<style lang="less" scoped>
+  #lists{
+    transform: translateY(50%);
+  }
+  .pie-total{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    font-size: 25px;
+    text-align: center;
+
+    h4{
+      color: rgba(0,0,0,.45);
+      font-size: 16px;
+      line-height: 22px;
+      height: 22px;
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    .total{
+      font-size: 25px;
+      margin-bottom: 0;
+    }
+  }
+</style>
+
 <style scoped>
-  .pie-chart >>> span{
+  .pie-chart >>> .g2-legend-list-item{
+    width: 100%;
+    margin-right: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pie-chart >>> .g2-legend-list-item span{
     font-size: 14px;
     color: rgba(0,0,0,.65);
   }
-  .pie-chart >>> .ant-divider,
-  .pie-chart >>> .legend-percent{
+  .pie-chart >>> .g2-legend-list-item .ant-divider,
+  .pie-chart >>> .g2-legend-list-item .legend-percent{
     color: rgba(0,0,0,.45);
   }
   .pie-chart >>> .g2-legend{
     overflow: hidden;
-    margin-right: 25px;
   }
   .pie-chart >>> .legend-price{
     float: right;
-  }
-  .pie-chart >>> .g2-legend-list-item{
-    width: 100%;
-    margin-right: 0 !important;
   }
 
   .pie-chart >>> .g2-legend-text{

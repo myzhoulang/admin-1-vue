@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+// 页面容器
+const PageContainer = () => import(/* webpackChunkName: "PageContainer" */ '@/layout/PageContainer');
+
 // admin
 const Admin = () => import(/* webpackChunkName: "Admin" */ '@/pages');
 
@@ -28,9 +31,15 @@ export default new Router({
       redirect: '/admin/dashboard',
       component: Admin,
       children: [
-        { path: 'users', name: 'users', component: Users },
-        { path: 'users/:id', name: 'users.id', component: User },
-
+        {
+          path: 'users',
+          name: 'users.container',
+          component: PageContainer,
+          children: [
+            { path: '', name: 'users.users', component: Users },
+            { path: ':id', name: 'users.id', component: User },
+          ],
+        },
         // dashboard
         { path: 'dashboard', name: 'dashboard', component: Dashboard },
       ],
