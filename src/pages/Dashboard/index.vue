@@ -56,7 +56,8 @@
               </div>
 
               <div class="sales-pick">
-                <a-range-picker @change="onChange" />
+                <!--@change="onChange"-->
+                <a-range-picker  />
               </div>
             </div>
           </a-tabs>
@@ -90,7 +91,8 @@
         <a-card :bordered="false" class="sales" :style="{marginTop: '24px', minHeight: '509px'}">
           <template slot="title">
             <div class="title">销售额类别占比</div>
-            <a-radio-group @change="onChanelChange" v-model="chanel">
+            <!--@change="onChanelChange"-->
+            <a-radio-group v-model="chanel">
               <a-radio-button value="a">全部渠道</a-radio-button>
               <a-radio-button value="b">线上</a-radio-button>
               <a-radio-button value="c">门店</a-radio-button>
@@ -176,10 +178,6 @@ export default class Dashboard extends Vue {
     setTimeout(() => {
       this.state = 'success';
     }, 1000);
-  }
-  onChanelChange(){}
-  onChange() {
-    console.log(this);
   }
 }
 </script>

@@ -167,6 +167,7 @@ export default class Users extends Vue {
     this.users = data.list;
   }
 }
+
 </script>
 
 <style lang='less' scoped>
