@@ -1,5 +1,4 @@
 <template>
-
     <a-row :gutter="24">
       <a-col :span="12">
         <div class="hot">
@@ -39,7 +38,6 @@
         </div>
       </a-col>
     </a-row>
-
 </template>
 
 <script>

@@ -69,8 +69,8 @@
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import { observer } from 'mobx-vue';
-
 import store from './UserStore';
+
 
 @observer
 @Component
