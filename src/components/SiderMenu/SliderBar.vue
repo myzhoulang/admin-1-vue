@@ -3,8 +3,6 @@
     :width="256"
     :trigger="null"
     breakpoint="xl"
-    @collapse="onCollapse"
-    @breakpoint="onBreakpoint"
     v-model="store.siderCollapsed"
     collapsible
   >
