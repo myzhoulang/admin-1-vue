@@ -3,7 +3,7 @@
     :style="{ padding: '16px 0', width:'100%'}"
     :defaultSelectedKeys="['1']"
     :defaultOpenKeys="['sub1']"
-    :inlineCollapsed="false"
+    :inlineCollapsed="true"
     :openKeys="openKeys"
     :selectedKeys="selectedKeys"
     @click="setCurrentPaths"
@@ -50,18 +50,36 @@
 </template>
 
 <script>
-import { Vue, Component, Inject } from 'vue-property-decorator';
+import { Vue, Component, Inject, Watch } from 'vue-property-decorator';
 import { observer } from 'mobx-vue';
 import pathToRegexp from 'path-to-regexp';
 
 @observer
-@Component
+@Component({
+  props: {
+    siderCollapsed: Boolean,
+  },
+})
 export default class BaseMenu extends Vue {
   @Inject() store;
 
   selectedKeys = [];
   openKeys = [];
+  cachedOpenKeys = [];
   rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6'];
+
+  // 监测左侧栏展开显示的一个标识符
+  // 在关闭状态下讲过openkeys 设置为空数组
+  // 以解决在左侧栏收缩的时候二级菜单会展示在页面上
+  @Watch('siderCollapsed')
+  onSideeCollapsedChange(val) {
+    if (val) {
+      this.cachedOpenKeys = this.openKeys;
+      this.openKeys = [];
+    } else {
+      this.openKeys = this.cachedOpenKeys;
+    }
+  }
 
   // 设置当前选中的那一个路由
   setCurrentPaths({ key }) {

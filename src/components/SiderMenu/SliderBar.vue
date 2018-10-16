@@ -3,6 +3,8 @@
     :width="256"
     :trigger="null"
     breakpoint="xl"
+    @collapse="onCollapse"
+    @breakpoint="onBreakpoint"
     v-model="store.siderCollapsed"
     collapsible
   >
@@ -10,7 +12,7 @@
       <img :src="logo" alt="logo" />
       <h1>孚临风控商户中心</h1>
     </div>
-    <BaseMenu />
+    <BaseMenu :siderCollapsed="store.siderCollapsed"/>
   </a-layout-sider>
 </template>
 
@@ -28,8 +30,8 @@ import BaseMenu from './BaseMenu';
   },
 })
 export default class SliderBar extends Vue {
-    logo = logo;
-    @Inject() store;
+  @Inject() store;
+  logo = logo;
 }
 </script>
 
