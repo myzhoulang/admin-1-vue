@@ -8,8 +8,10 @@
 
 <script>
 import { Vue, Component } from 'vue-property-decorator';
-import store from './UserStore';
 import UserForm from './UserForm';
+import UserService from '../../services/User';
+
+const us = new UserService();
 
 @Component({
   components: { UserForm },
@@ -23,7 +25,7 @@ export default class User extends Vue {
     const id = Number(params.id);
     if (Number.isInteger(id)) {
       try {
-        const { user } = await store.getUser(id);
+        const { user } = await us.getUser(id);
         this.user = user;
       } catch (e) {
         this.user = {};

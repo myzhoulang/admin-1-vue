@@ -115,7 +115,7 @@ export default class Login extends Vue {
       userName: ['email', 'password'],
       phone: ['phone', 'captcha'],
     };
-    this.form.validateFields(file[this.activeTab], (err, values) => {
+    this.form.validateFields(file[this.activeTab], (err) => {
       if (!err) {
         this.$router.push('/');
       }

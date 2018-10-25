@@ -157,9 +157,9 @@ class UserForm extends Vue {
           label={(
             <span>
         Nickname&nbsp;
-            <a-tooltip title='What do you want others to call you?'>
-              <a-icon type='question-circle-o' />
-            </a-tooltip>
+              <a-tooltip title='What do you want others to call you?'>
+                <a-icon type='question-circle-o' />
+              </a-tooltip>
             </span>
           )}
         >

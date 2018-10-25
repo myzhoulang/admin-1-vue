@@ -29,12 +29,9 @@ import {
   Tooltip,
   Dropdown,
   Modal,
-  confirm,
   Divider } from 'ant-design-vue';
 
 import store from './store';
-
-Vue.prototype.$confirm = Modal.confirm;
 
 Vue.use(Layout);
 Vue.use(Table);
@@ -61,7 +58,7 @@ Vue.use(Dropdown);
 Vue.use(Alert);
 
 Vue.use(DatePicker);
-
+Vue.prototype.$confirm = Modal.confirm;
 @Component
 export default class App extends Vue {
   @Provide() store = store

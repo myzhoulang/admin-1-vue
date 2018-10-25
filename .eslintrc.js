@@ -32,6 +32,7 @@ module.exports = {
     }],
     "no-restricted-syntax": 0,
     "linebreak-style": 0,
+    "class-methods-use-this" : 0,
 
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions

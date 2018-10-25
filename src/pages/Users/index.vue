@@ -69,8 +69,9 @@
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import { observer } from 'mobx-vue';
-import store from './UserStore';
+import UserService from '../../services/User';
 
+const us = new UserService();
 
 @observer
 @Component
@@ -163,8 +164,8 @@ export default class Users extends Vue {
   }
 
   async mounted() {
-    const { data } = await store.getUsers();
-    this.users = data.list;
+    const { list } = await us.getUsers();
+    this.users = list;
   }
 }
 

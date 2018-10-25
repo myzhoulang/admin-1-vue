@@ -37,7 +37,10 @@
             <a-menu-item key="1"><a-icon type="user"/>个人中心</a-menu-item>
             <a-menu-item key="2"><a-icon type="setting"/>个人设置</a-menu-item>
             <a-menu-divider />
-            <a-menu-item key="3" @click="logout"><a-icon type="logout"/>退出登录</a-menu-item>
+
+            <a-menu-item key="3" @click="logout">
+              <a-icon type="logout"/>退出登录
+            </a-menu-item>
           </a-menu>
         </a-dropdown>
 
