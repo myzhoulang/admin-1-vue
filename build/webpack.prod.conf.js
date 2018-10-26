@@ -11,7 +11,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const env = require('../config/prod.env')
+// 判断打包的是生产还是测试
+let env = require('../config/prod.env')
+if(process.env.NODE_ENV === 'test'){
+  env = require('../config/test.env')
+}
 
 // serviceworker
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')

@@ -7,10 +7,11 @@
   "homepage": ".",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "cross-env NODE_ENV=development npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "deploy": "gh-pages -d dist",
-    "build": "node build/build.js"
+    "build:test": "cross-env NODE_ENV=test node build/build.js",
+    "build:prod": "cross-env NODE_ENV=production node build/build.js"
   },
   "dependencies": {
     "@antv/data-set": "^0.9.5",
@@ -25,6 +26,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",

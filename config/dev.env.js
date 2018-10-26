@@ -5,5 +5,5 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   domain: '"fullink.tech"',
-  sso: '"http://sso.fullink.tech"'
+  sso: '"http://ssotest.fullink.tech"'
 })
