@@ -90,17 +90,6 @@ export default class BaseMenu extends Vue {
   getMenuSelectKeys() {
     const { fullPath } = this.$route;
     const menusSelects = { openKeys: [], selectKeys: [] };
-    // const paths = {
-    //   sub1: ['/admin/dashboard'],
-    //   sub3: ['/admin/users', '/admin/users/:id', '/admin/orders'],
-    // };
-    // const keys = Object.keys(paths);
-    // for (const item of keys) {
-    //   if (paths[item].find(k => k === fullPath || pathToRegexp(k).test(fullPath))) {
-    //     return [item];
-    //   }
-    // }
-
     const paths = [
       { path: '/admin/dashboard', parent: 'sub1' },
       { path: '/admin/users', parent: 'sub3' },

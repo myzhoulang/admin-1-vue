@@ -11,11 +11,11 @@
             <a-tab-pane tab="销售额" key="salesVolume">
               <!--销售-->
               <a-row :gutter="24">
-                <a-col :span="16">
+                <a-col :md="24" :lg="16">
                   <BarChart title="销售额趋势" v-if="state === 'success'"/>
                 </a-col>
 
-                <a-col :span="8">
+                <a-col :md="24" :lg="8">
                   <h4>门店销售额排名</h4>
                   <ul class="ranks">
                     <li :key="rank.name" v-for="(rank, index) in ranks">
@@ -48,14 +48,14 @@
             </a-tab-pane>
 
             <div slot="tabBarExtraContent" class="sales-extra-wrap">
-              <div class="sales-extra">
+              <div class="sales-extra" v-if="!store.isPad && !store.isMobile">
                 <a class="active" href="#">今日</a>
                 <a href="#">本周</a>
                 <a href="#">本月</a>
                 <a href="#">全年</a>
               </div>
 
-              <div class="sales-pick">
+              <div class="sales-pick" v-if="!store.isMobile">
                 <!--@change="onChange"-->
                 <a-range-picker  />
               </div>
@@ -107,7 +107,9 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Inject } from 'vue-property-decorator';
+import { Observer } from 'mobx-vue';
+
 import BarChart from '@/components/charts/BarChart';
 import HotSearch from './HotSearch';
 import Pie from '../../components/charts/Pie';
@@ -128,6 +130,7 @@ const hotSearchData = [
   { id: 5, sortIndex: 5, keyword: '搜索关键词-4', users: 661, increase: '40%', trend: 'down' },
 ];
 
+@Observer
 @Component({
   components: {
     BarChart,
@@ -136,6 +139,7 @@ const hotSearchData = [
   },
 })
 export default class Dashboard extends Vue {
+  @Inject() store;
   state = 'pedding';
   ranks = ranks;
   chanel = 'a';

@@ -1,6 +1,21 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger">
-    <SiderMenu />
+    <a-drawer
+      v-if="store.isMobile"
+      :visible="!store.siderCollapsed"
+      :closable="false"
+      placement="left"
+      wrapClassName="drawer"
+      @close="onClose">
+      <SiderMenu
+        :style="{height: '100%'}"
+        :collapsed=" false" />
+    </a-drawer>
+
+    <SiderMenu
+      :style="{height: '100%'}"
+      :collapsed="store.siderCollapsed" v-else/>
+
     <a-layout>
       <Header />
       <a-layout-content
@@ -15,7 +30,7 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Inject } from 'vue-property-decorator';
 import { observer } from 'mobx-vue';
 
 import SiderMenu from '../components/SiderMenu';
@@ -30,10 +45,16 @@ import Footer from '../components/Footer';
     Footer,
   },
 })
-export default class Admin extends Vue {}
+export default class Admin extends Vue {
+  @Inject() store;
+  onClose() {
+    this.store.toggleSiderCollapsed(true);
+  }
+}
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

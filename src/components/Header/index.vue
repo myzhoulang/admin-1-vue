@@ -66,12 +66,12 @@ import userAvatar from '../../assets/images/user.png';
 })
 export default class HeaderView extends Vue {
   userAvatar = userAvatar;
+  isMobile = false;
+  @Inject() store
 
   logout() {
     this.$router.push('/login');
   }
-
-  @Inject() store
 }
 </script>
 

@@ -1,3 +1,5 @@
+import enquire from 'enquire.js';
+
 export default class Util {
   // 过滤一个对象中类型为字符串的，并且值为空的字段
   static filterObjectStringEmpty(obj = {}) {
@@ -14,4 +16,21 @@ export default class Util {
     });
     return params;
   }
+}
+
+const mobileQuery = 'only screen and (max-width: 575px)';
+
+export function enquireScreen(cb, query = mobileQuery) {
+  enquire.register(query, {
+    match() {
+      if (typeof cb === 'function') {
+        cb(true);
+      }
+    },
+    unmatch() {
+      if (typeof cb === 'function') {
+        cb(false);
+      }
+    },
+  });
 }

@@ -13,6 +13,7 @@ import {
   Layout,
   Table,
   Card,
+  Drawer,
   Form,
   Menu,
   Row,
@@ -38,6 +39,7 @@ Vue.use(Table);
 Vue.use(Card);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Drawer);
 Vue.use(Menu);
 
 Vue.use(Form);
