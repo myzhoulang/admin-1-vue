@@ -1,5 +1,5 @@
 <template>
-    <a-row :gutter="24">
+  <a-row :gutter="24">
       <a-col :span="12">
         <div class="hot">
           <h4>搜索用户数
@@ -68,7 +68,6 @@ export default class HotSearch extends Vue {
       margin-right: 32px;
       display: inline-block;
       color: rgba(0,0,0,.85);
-      line-height: 32px;
       line-height: 32px;
     }
 
